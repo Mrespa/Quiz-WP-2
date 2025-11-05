@@ -13,5 +13,12 @@ const addDishRestaurant = async (req, res) => {
         res.json({ msg: "Already exists" })
     }
 }
+const getDishFilteredByRestaurant = async (req, res) => {
+    const { id } = req.params;
+    const { page } = req.query;
+    console.log(page);
+    const dishes = await Dish.find({ restaurantId: id }).populate('restaurantId').skip((page - 1) * 3).limit(3);
+    res.json(dishes);
+}
 
-module.exports = { addDishRestaurant }
+module.exports = { addDishRestaurant, getDishFilteredByRestaurant }

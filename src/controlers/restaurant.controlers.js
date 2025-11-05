@@ -13,12 +13,6 @@ const addRestaurant = async (req, res) => {
     }
 }
 
-const getDishFilteredByRestaurant = async (req, res) => {
-    const { id } = req.params;
-    const dishes = await Dish.find({ restaurantId: id });
-    res.json(dishes);
-}
-
 const getRestaurants = async (req, res) => {
     try {
         const restaurants = await Restaurant.find();
@@ -29,4 +23,4 @@ const getRestaurants = async (req, res) => {
 }
 
 
-module.exports = { getRestaurants, addRestaurant, getDishFilteredByRestaurant }
+module.exports = { getRestaurants, addRestaurant }
